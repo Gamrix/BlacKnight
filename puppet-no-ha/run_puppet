@@ -1,4 +1,5 @@
 #!/bin/bash
 
+puppet module install computology-packagecloud
 puppet apply --confdir=. manifests/site.pp "$@"
 
