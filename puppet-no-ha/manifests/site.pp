@@ -43,42 +43,52 @@ $ZK_IDS = { '128.111.55.39' => 1,
                 '128.111.55.25' => 4 }
 
 # Physical nodes
-node 'php.cs.ucsb.edu' {
-  $PUBLIC_IP = '128.111.55.39'
-  $IPADDR = '10.50.10.39'
-  $HOSTNAME = 'php.cs.ucsb.edu'
+node 'squeak.cs.ucsb.edu' {
+  $PUBLIC_IP = '128.111.55.40'
+  $IPADDR = '10.50.10.40'
+  $HOSTNAME = 'squeak.cs.ucsb.edu'
 
   include riak
   include eucalyptus
-  include blacknight
+  # include blacknight
 }
 
-node 'oz.cs.ucsb.edu' {
-  $PUBLIC_IP = '128.111.55.51'
-  $IPADDR = '10.50.10.51'
-  $HOSTNAME = 'oz.cs.ucsb.edu'
+node 'lisp.cs.ucsb.edu' {
+  $PUBLIC_IP = '128.111.55.33'
+  $IPADDR = '10.50.10.33'
+  $HOSTNAME = 'lisp.cs.ucsb.edu'
 
   include riak
   include eucalyptus
-  include blacknight
+  # include blacknight
 }
 
-node 'objc.cs.ucsb.edu' {
-  $PUBLIC_IP = '128.111.55.50'
-  $IPADDR = '10.50.10.50'
-  $HOSTNAME = 'objc.cs.ucsb.edu'
+node 'fsharp.cs.ucsb.edu' {
+  $PUBLIC_IP = '128.111.55.31'
+  $IPADDR = '10.50.10.31'
+  $HOSTNAME = 'fsharp.cs.ucsb.edu'
 
   include riak
   include eucalyptus
-  include blacknight
+  # include blacknight
 }
 
-node 'scala.cs.ucsb.edu' {
-  $PUBLIC_IP = '128.111.55.25'
-  $IPADDR = '10.50.10.25'
-  $HOSTNAME = 'scala.cs.ucsb.edu'
+node 'perl.cs.ucsb.edu' {
+  $PUBLIC_IP = '128.111.55.28'
+  $IPADDR = '10.50.10.28'
+  $HOSTNAME = 'perl.cs.ucsb.edu'
 
   include riak
   include eucalyptus
-  include blacknight
+  # include blacknight
+}
+
+node 'python.cs.ucsb.edu' {
+  $PUBLIC_IP = '128.111.55.22'
+  $IPADDR = '10.50.10.22'
+  $HOSTNAME = 'python.cs.ucsb.edu'
+
+  include riak
+  include eucalyptus
+  # include blacknight
 }

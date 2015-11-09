@@ -3,13 +3,18 @@
 class eucalyptus {
 
   # formerly config -------------------------------------------------
+  include install-euca
 
   # TODO: chkconfig eucalyptus-* off
   class euca-prep {
+    file { '/etc/eucalyptus/' :
+      ensure  => directory,
+    }
 
     file { '/etc/eucalyptus/eucalyptus.conf' :
-    ensure  => file,
-    content => template('eucalyptus/eucalyptus.conf.erb')
+      require => File['/etc/eucalyptus'],
+      ensure  => file,
+      content => template('eucalyptus/eucalyptus.conf.erb')
     }
 
     file { '/etc/selinux/config' :
@@ -42,16 +47,20 @@ class eucalyptus {
     augeas{ "ifcfgeth1":
       context => '/etc/sysconfig/network-scripts/ifcfg-eth1',
       changes => [
-        "BRIDGE=br0",
-        "ONBOOT=yes",
-        "NM_CONTROLLED=no",
-        "BOOTPROTO=none",
+        "set BRIDGE br0",
+        "set ONBOOT yes",
+        "set NM_CONTROLLED no",
+        "set BOOTPROTO none",
       ],
     }
 
     file { '/etc/sysconfig/network-scripts/ifcfg-br0' :
       content => template('eucalyptus/ifcfg-br0.erb'),
       mode    => 0644
+    }
+    
+    package{'ntp':
+      ensure => installed,
     }
 
     service { 'ntpd' :
@@ -98,11 +107,10 @@ class eucalyptus {
   class install-euca{
     require euca-prep
     require euca-repo-setup
-    $pkgs = [ 'eucalytpus-nc',
-      'eucalytpus-cloud',
+    $pkgs = [ 'eucalyptus-nc.x86_64',
+      'eucalyptus-cloud',
       'eucalyptus-cc',
-      #'eucalyptus-imaging-worker-image',
-      'eucalyptus-load-balancer-image',
+      'eucalyptus-service-image',
       'eucalyptus-sc',
       'eucalyptus-walrus' ]
 
